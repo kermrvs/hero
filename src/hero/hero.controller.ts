@@ -3,12 +3,9 @@ import {
   Controller,
   Delete,
   Get,
-  HttpCode,
-  HttpException,
-  HttpStatus,
   Param,
-  Patch,
   Post,
+  Put,
 } from '@nestjs/common';
 import { HeroService } from './hero.service';
 import { CreateHeroDto } from './dto/hero.dto';
@@ -17,29 +14,22 @@ import { CreateHeroDto } from './dto/hero.dto';
 export class HeroController {
   constructor(private heroService: HeroService) {}
 
-  @Post('create')
-  @HttpCode(HttpStatus.OK)
+  @Post()
   async create(@Body() heroDto: CreateHeroDto) {
-    const hero = await this.heroService.createHero(heroDto);
-    if (hero) {
-      return hero;
-    } else {
-      throw new HttpException('Bad Request', HttpStatus.BAD_REQUEST);
-    }
+    return await this.heroService.createHero(heroDto);
   }
 
-  @Get('all')
-  @HttpCode(HttpStatus.OK)
+  @Get()
   getAllHeroes() {
     return this.heroService.getAllHeroes();
   }
 
-  @Patch('update')
+  @Put()
   updateHero(@Body() heroDto: CreateHeroDto) {
     return this.heroService.updateHero(heroDto);
   }
 
-  @Delete('delete/:id')
+  @Delete(':id')
   deleteHero(@Param('id') id: string) {
     return this.heroService.deleteHero(id);
   }

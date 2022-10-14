@@ -16,7 +16,10 @@ export class Hero {
   @Prop({ required: true })
   catch_phrase: string;
   @Prop({ require: true })
-  images: object[];
+  images: {
+    name: string;
+    img: string;
+  }[];
 }
 
 export const HeroSchema = SchemaFactory.createForClass(Hero);

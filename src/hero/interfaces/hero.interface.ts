@@ -1,4 +1,4 @@
-export interface Hero {
+export interface IHero {
   nickname: string;
   real_name: string;
   origin_description: string;
