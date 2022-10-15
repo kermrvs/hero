@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -6,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { HeroService } from './hero.service';
 import { CreateHeroDto } from './dto/hero.dto';
@@ -19,9 +21,14 @@ export class HeroController {
     return await this.heroService.createHero(heroDto);
   }
 
-  @Get()
+  @Get('all')
   getAllHeroes() {
     return this.heroService.getAllHeroes();
+  }
+
+  @Get()
+  getHeroes(@Query() query) {
+    return this.heroService.getHeroes(query.page);
   }
 
   @Put()
@@ -30,7 +37,7 @@ export class HeroController {
   }
 
   @Delete(':id')
-  deleteHero(@Param('id') id: string) {
-    return this.heroService.deleteHero(id);
+  async deleteHero(@Param('id') id: string) {
+    await this.heroService.deleteHero(id);
   }
 }
