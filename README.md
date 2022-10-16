@@ -17,7 +17,7 @@ $ yarn
 
 ## Running the app
 
-First step you need to change MONGODB_URI in .env file if you need.
+First step you need to add MONGODB_URI in .env file.
 
 ```bash
 # development

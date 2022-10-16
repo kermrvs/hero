@@ -3,7 +3,6 @@ import { IHero } from './interfaces/hero.interface';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Query } from 'mongoose';
 import { HeroDocument } from './schemas/hero.schema';
-import { Document } from 'mongoose';
 
 @Injectable()
 export class HeroService {
