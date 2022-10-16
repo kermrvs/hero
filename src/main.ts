@@ -5,7 +5,6 @@ import * as bodyParser from 'body-parser';
 import * as process from 'process';
 
 async function bootstrap() {
-  console.log(process.env.PORT);
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
